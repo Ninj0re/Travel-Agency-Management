@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient; //I wrote that line for connect database
+
 
 namespace TAMS
 {
@@ -16,7 +18,10 @@ namespace TAMS
         {
             InitializeComponent();
         }
-        
+
+        static string conString = "Data Source=DESKTOP-SDDC56F\\SQLEXPRESS;Initial Catalog=TamsDb;Integrated Security=True";
+        SqlConnection connect = new SqlConnection(conString); // I connected to sql server
+
 
         private void label3_Click(object sender, EventArgs e)
         {
@@ -36,10 +41,39 @@ namespace TAMS
 
         private void button1_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("You have successfuly created an account.");
+            
+        try { 
+              if(connect.State == ConnectionState.Closed)
+               {
+                   connect.Open();
+               }
+               string kayit = "insert into tourists(SSN,FirstName,Surname,Birthdate,Email,Gender,tourist_password) values(@ssn,@firstname,@surname,@birthdate,@email,@gender,@touristpassword )";
 
-            this.Hide();
-            new Login().Show();
+               SqlCommand komut = new SqlCommand(kayit, connect);
+
+               komut.Parameters.AddWithValue("@ssn", txt_ssn.Text);
+               komut.Parameters.AddWithValue("@firstname", txt_fn.Text);
+               komut.Parameters.AddWithValue("@surname", txt_sn.Text);
+               komut.Parameters.AddWithValue("@birthdate", txt_bd.Text);
+               komut.Parameters.AddWithValue("@email", txt_email.Text);
+               komut.Parameters.AddWithValue("@gender", "M");
+               komut.Parameters.AddWithValue("@touristpassword", txt_tpassword.Text);
+
+               komut.ExecuteNonQuery();
+               connect.Close();
+
+                MessageBox.Show("You have successfuly created an account.");
+
+                this.Hide();
+                new Login().Show();
+
+            }
+           catch(Exception hata) 
+           {
+               MessageBox.Show("Hata meydana geldi" + hata.Message);
+           }
+
+ 
         }
 
         private void textBox2_TextChanged(object sender, EventArgs e)
@@ -69,8 +103,8 @@ namespace TAMS
 
         private void Signup_Load(object sender, EventArgs e)
         {
-            textBox5.MaxLength = 9;
-            dateTimePicker1.Format = DateTimePickerFormat.Custom;
+            txt_ssn.MaxLength = 9;
+            txt_bd.Format = DateTimePickerFormat.Custom;
         }
 
         private void radioButton2_CheckedChanged(object sender, EventArgs e)
@@ -92,6 +126,19 @@ namespace TAMS
             }
         }
 
-        
+        private void txt_fn_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txt_bd_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
