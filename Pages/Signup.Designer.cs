@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.login = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -46,6 +47,8 @@
             this.txt_ssn = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.txt_bd = new System.Windows.Forms.DateTimePicker();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.label8 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -86,7 +89,7 @@
             // sign_up
             // 
             this.sign_up.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.sign_up.Location = new System.Drawing.Point(10, 470);
+            this.sign_up.Location = new System.Drawing.Point(7, 493);
             this.sign_up.Name = "sign_up";
             this.sign_up.Size = new System.Drawing.Size(144, 34);
             this.sign_up.TabIndex = 13;
@@ -230,18 +233,36 @@
             // 
             // txt_bd
             // 
-            this.txt_bd.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.txt_bd.Location = new System.Drawing.Point(10, 413);
+            this.txt_bd.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.txt_bd.Location = new System.Drawing.Point(10, 425);
             this.txt_bd.Name = "txt_bd";
-            this.txt_bd.Size = new System.Drawing.Size(306, 27);
+            this.txt_bd.Size = new System.Drawing.Size(274, 30);
             this.txt_bd.TabIndex = 24;
             this.txt_bd.ValueChanged += new System.EventHandler(this.txt_bd_ValueChanged);
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.label8.Location = new System.Drawing.Point(7, 387);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(89, 25);
+            this.label8.TabIndex = 26;
+            this.label8.Text = "Birthdate";
+            this.label8.Click += new System.EventHandler(this.label8_Click);
             // 
             // Signup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(912, 623);
+            this.Controls.Add(this.label8);
             this.Controls.Add(this.txt_bd);
             this.Controls.Add(this.txt_ssn);
             this.Controls.Add(this.label7);
@@ -288,5 +309,7 @@
         private System.Windows.Forms.TextBox txt_ssn;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.DateTimePicker txt_bd;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.Label label8;
     }
 }

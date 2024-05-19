@@ -19,10 +19,6 @@ namespace TAMS
             InitializeComponent();
         }
 
-        static string conString = "Data Source=DESKTOP-SDDC56F\\SQLEXPRESS;Initial Catalog=TamsDb;Integrated Security=True";
-        SqlConnection connect = new SqlConnection(conString); // I connected to sql server
-
-
         private void label3_Click(object sender, EventArgs e)
         {
 
@@ -42,37 +38,38 @@ namespace TAMS
         private void button1_Click(object sender, EventArgs e)
         {
             
-        try { 
-              if(connect.State == ConnectionState.Closed)
-               {
-                   connect.Open();
-               }
-               string kayit = "insert into tourists(SSN,FirstName,Surname,Birthdate,Email,Gender,tourist_password) values(@ssn,@firstname,@surname,@birthdate,@email,@gender,@touristpassword )";
+        try 
+        { 
+            if(Program.connect.State == ConnectionState.Closed)
+            {
+                Program.connect.Open();
+            }
+                string kayit = "insert into tourists(SSN,FirstName,Surname,Birthdate,Email,Gender,tourist_password) values(@ssn,@firstname,@surname,@birthdate,@email,@gender,@touristpassword )";
 
-               SqlCommand komut = new SqlCommand(kayit, connect);
-
-               komut.Parameters.AddWithValue("@ssn", txt_ssn.Text);
-               komut.Parameters.AddWithValue("@firstname", txt_fn.Text);
-               komut.Parameters.AddWithValue("@surname", txt_sn.Text);
-               komut.Parameters.AddWithValue("@birthdate", txt_bd.Text);
-               komut.Parameters.AddWithValue("@email", txt_email.Text);
-               komut.Parameters.AddWithValue("@gender", "M");
-               komut.Parameters.AddWithValue("@touristpassword", txt_tpassword.Text);
-
-               komut.ExecuteNonQuery();
-               connect.Close();
-
+                SqlCommand komut = new SqlCommand(kayit, Program.connect);
+                
+                komut.Parameters.AddWithValue("@ssn", txt_ssn.Text);
+                komut.Parameters.AddWithValue("@firstname", txt_fn.Text);
+                komut.Parameters.AddWithValue("@surname", txt_sn.Text);
+                komut.Parameters.AddWithValue("@birthdate", txt_bd.Text);
+                komut.Parameters.AddWithValue("@email", txt_email.Text);
+                komut.Parameters.AddWithValue("@gender", "M");
+                komut.Parameters.AddWithValue("@touristpassword", txt_tpassword.Text);
+                
+                komut.ExecuteNonQuery();
+                Program.connect.Close();
+                
                 MessageBox.Show("You have successfuly created an account.");
-
+                
                 this.Hide();
                 new Login().Show();
 
+        }
+            catch(Exception hata) 
+            {
+                MessageBox.Show("Hata meydana geldi" + hata.Message);
             }
-           catch(Exception hata) 
-           {
-               MessageBox.Show("Hata meydana geldi" + hata.Message);
-           }
-
+            finally { Program.connect.Close(); }
  
         }
 
@@ -137,6 +134,11 @@ namespace TAMS
         }
 
         private void txt_bd_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label8_Click(object sender, EventArgs e)
         {
 
         }

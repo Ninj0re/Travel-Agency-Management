@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TAMS.Pages;
 
 namespace TAMS
 {
@@ -29,7 +30,8 @@ namespace TAMS
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+            this.Hide();
+            new Reserve().Show();
         }
 
         private void label3_Click(object sender, EventArgs e)
