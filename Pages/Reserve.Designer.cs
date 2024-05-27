@@ -146,6 +146,7 @@
             this.search_btn.TabIndex = 4;
             this.search_btn.Text = "Search";
             this.search_btn.UseVisualStyleBackColor = true;
+            this.search_btn.Click += new System.EventHandler(this.Button_Click);
             // 
             // My_reservations_btn
             // 
@@ -161,7 +162,7 @@
             // Logout_btn
             // 
             this.Logout_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.Logout_btn.Location = new System.Drawing.Point(818, 12);
+            this.Logout_btn.Location = new System.Drawing.Point(1009, 12);
             this.Logout_btn.Name = "Logout_btn";
             this.Logout_btn.Size = new System.Drawing.Size(130, 40);
             this.Logout_btn.TabIndex = 8;
@@ -183,7 +184,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(960, 611);
+            this.ClientSize = new System.Drawing.Size(1151, 611);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.Logout_btn);
             this.Controls.Add(this.My_reservations_btn);

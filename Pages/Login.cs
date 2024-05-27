@@ -73,8 +73,6 @@ namespace TAMS
             {
                 Program.connect.Close();
             }
-
-
     }
 
     private void label3_Click(object sender, EventArgs e)

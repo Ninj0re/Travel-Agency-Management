@@ -12,6 +12,10 @@ namespace TAMS.Pages
 {
     public partial class Reserve : Form
     {
+        const int NUMBER_OF_BUTTON_COLUMNS = 6;
+        const int BUTTON_HEIGHT = 80;
+        const int BUTTON_WIDTH = 200;
+        const int BUTTON_MARGIN = 50;
         public Reserve()
         {
             InitializeComponent();
@@ -37,6 +41,28 @@ namespace TAMS.Pages
         {
             this.Hide();
             new Login().Show();
+        }
+
+        public void AddButtons()
+        {
+            
+            for (int i = 0; i < 5; i++)
+            {
+                Button button = new Button();
+                button.Text = "Departure: 2024-09-07 05:20\nArrival: 2024-09-07 05:20\n\n\n    RESERVE";
+                int column = 5 % NUMBER_OF_BUTTON_COLUMNS;
+                int row = i;
+                button.Left = column * (BUTTON_MARGIN + 40);
+                button.Top = row * (BUTTON_MARGIN + 40);
+                button.Width = BUTTON_WIDTH;
+                button.Height = BUTTON_HEIGHT;
+                this.Controls.Add(button);
+                button.Click += new EventHandler(Button_Click);
+            }
+        }
+        public void Button_Click(object sender, EventArgs e)
+        {
+            AddButtons();
         }
     }
 }
