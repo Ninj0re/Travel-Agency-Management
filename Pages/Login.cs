@@ -29,6 +29,8 @@ namespace TAMS
 
         }
 
+        public static String email, password;
+
         private void button1_Click(object sender, EventArgs e)
         {
             String email, password;
@@ -69,10 +71,7 @@ namespace TAMS
             {
                 MessageBox.Show("Error: " + hata.Message);
             }
-            finally
-            {
-                Program.connect.Close();
-            }
+           
     }
 
     private void label3_Click(object sender, EventArgs e)
