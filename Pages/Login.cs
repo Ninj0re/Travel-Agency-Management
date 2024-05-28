@@ -33,27 +33,24 @@ namespace TAMS
 
         private void button1_Click(object sender, EventArgs e)
         {
-            String email, password;
 
             email = txt_email.Text;
             password = txt_password.Text;
 
             try
             {
-                String querry = "Select * from Tourists where Email = '"+txt_email.Text+"' AND tourist_password = '"+txt_password.Text+"'";
+                String querry = "Select * from Tourists where Email = '"+email+"' AND tourist_password = '"+password+"'";
                 SqlDataAdapter sda = new SqlDataAdapter(querry, Program.connect);
                 DataTable dataTable = new DataTable();
                 sda.Fill(dataTable);
 
                 if (dataTable.Rows.Count > 0)
                 {
-                    email = txt_email.Text;
-                    password = txt_password.Text;
                     //page that needed to be load next
 
 
                       this.Hide();
-                      new Reserve().Show();
+                      new Reserve(this).Show();
                 }
                 else
                 {

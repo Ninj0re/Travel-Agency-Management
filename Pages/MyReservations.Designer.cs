@@ -36,7 +36,7 @@
             // Reserve_btn
             // 
             this.Reserve_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.Reserve_btn.Location = new System.Drawing.Point(12, 627);
+            this.Reserve_btn.Location = new System.Drawing.Point(12, 707);
             this.Reserve_btn.Name = "Reserve_btn";
             this.Reserve_btn.Size = new System.Drawing.Size(240, 40);
             this.Reserve_btn.TabIndex = 6;
@@ -59,17 +59,18 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label1.Location = new System.Drawing.Point(295, 16);
+            this.label1.Location = new System.Drawing.Point(83, 16);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(252, 36);
             this.label1.TabIndex = 8;
             this.label1.Text = "My Reservations";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // MyReservations
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1061, 679);
+            this.ClientSize = new System.Drawing.Size(1061, 759);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.Logout_btn);
             this.Controls.Add(this.Reserve_btn);

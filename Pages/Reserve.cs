@@ -17,9 +17,12 @@ namespace TAMS.Pages
         const int BUTTON_HEIGHT = 90;
         const int BUTTON_WIDTH = 200;
         const int BUTTON_MARGIN = 50;
-        public Reserve()
+        Login login;
+        
+        public Reserve(Login login)
         {
             InitializeComponent();
+            this.login = login;
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -35,7 +38,7 @@ namespace TAMS.Pages
         private void My_reservations_btn_Click(object sender, EventArgs e)
         {
             this.Hide();
-            new MyReservations().Show();
+            new MyReservations(login).Show();
         }
 
         private void Logout_btn_Click(object sender, EventArgs e)
@@ -53,6 +56,7 @@ namespace TAMS.Pages
 
             try
             {
+                
                 String querry = "Select * from Tours where DepartureCity = ' " + departureCity + "' AND ArrivalCity = ' " + arriwalCity + "'";
                 SqlDataAdapter sda = new SqlDataAdapter(querry, Program.connect);
                 DataTable dataTable = new DataTable();
