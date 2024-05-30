@@ -101,9 +101,8 @@ namespace TAMS.Pages
                         button.Width = BUTTON_WIDTH;
                         button.Height = BUTTON_HEIGHT;
                         this.Controls.Add(button);
-                        //  button.Click += new EventHandler(Button_Click);
+                        button.Click += new EventHandler(Button_ClickedEvent);
 
-                        i++;
                         i++;
                     }
 
@@ -122,7 +121,7 @@ namespace TAMS.Pages
 
         private void Button_ClickedEvent(object sender, EventArgs e)
         {
-            //Use the sender object to work out which button was clicked.
+
         }
 
         private void label1_Click(object sender, EventArgs e)

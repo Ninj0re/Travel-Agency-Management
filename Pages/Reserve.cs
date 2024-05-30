@@ -46,7 +46,7 @@ namespace TAMS.Pages
             this.Hide();
             new Login().Show();
         }
-
+       
         public void AddButtons()
         {
             String departureCity, arriwalCity, departureDate, arrivalDate;
@@ -73,7 +73,6 @@ namespace TAMS.Pages
                         var arrivalCity1 = row1["ArrivalCity"];
                         var departureDate1 = row1["DepartureDate"];
                         var arrivalDate1 = row1["ArrivalDate"];
-                        
 
                         Button button = new Button();
                         button.Text = $"DepartureCity: {departureCity1},\nDepartureDate: {departureDate1},\n\nArrivalCity: {arrivalCity1},\nArrivalDate: {arrivalDate1}, \nTour ID: {tourId1}";
@@ -86,22 +85,33 @@ namespace TAMS.Pages
                         button.Width = BUTTON_WIDTH;
                         button.Height = BUTTON_HEIGHT;
                         this.Controls.Add(button);
-                        button.Click += new EventHandler(Button_Click);
+                        button.Click += new EventHandler(Reserve_Button);
                         i++;
 
                     }
+                }       
+            }
+            catch (Exception hata)
+            {
+                MessageBox.Show("Error: " + hata.Message);
+            }
 
-                }
-               /* else
+        }
+
+        public void AddToDb(string tour_id)
+        {
+            int SSN = 0;
+            try
+            {
+                String querrySSN = "Select SSN from Tourists where email = '" + Login.email + "'";
+                SqlDataAdapter sdaSSN = new SqlDataAdapter(querrySSN, Program.connect);
+                DataTable dataTableSSN = new DataTable();
+                sdaSSN.Fill(dataTableSSN);
+
+                foreach (DataRow row1 in dataTableSSN.Rows)
                 {
-                    MessageBox.Show("Invalid login details"
-                        , "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    txt_email.Clear();
-                    txt_password.Clear();
-
-                    //to focus username
-                    txt_email.Focus();
-                }/*/
+                    SSN = (int)row1["SSN"];
+                }
 
             }
             catch (Exception hata)
@@ -110,10 +120,45 @@ namespace TAMS.Pages
             }
 
 
+            try
+            {
+                if (Program.connect.State == ConnectionState.Closed)
+                {
+                    Program.connect.Open();
+                }
+                string kayit = "insert into reservations(ReserveDate,Reserve_ID,Tour_ID,SSN) values(@date,@r_id,@t_id,@ssn)";
+
+                SqlCommand komut = new SqlCommand(kayit, Program.connect);
+
+                komut.Parameters.AddWithValue("@ssn", SSN);
+                komut.Parameters.AddWithValue("@date", DateTime.UtcNow);
+                komut.Parameters.AddWithValue("@r_id", new Random().Next(1114854, 1119458));
+                komut.Parameters.AddWithValue("@t_id", tour_id);
+
+                komut.ExecuteNonQuery();
+
+                MessageBox.Show("You have successfuly reserved this Tour");
+
+
+            }
+            catch (Exception hata)
+            {
+                MessageBox.Show("Hata meydana geldi" + hata.Message);
+            }
+
+
+
         }
         public void Button_Click(object sender, EventArgs e)
         {
             AddButtons();
+        }
+
+        public void Reserve_Button(object sender, EventArgs e)
+        {
+            Button btn = sender as Button;
+
+            AddToDb(btn.Text.Split(new[] { "Tour ID: " }, StringSplitOptions.None)[1]);
         }
     }
 }
