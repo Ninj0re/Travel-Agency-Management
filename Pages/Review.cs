@@ -17,12 +17,22 @@ namespace TAMS.Pages
             InitializeComponent();
         }
 
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
         private void radioButton5_CheckedChanged(object sender, EventArgs e)
         {
 
         }
 
-        private void sign_up_Click(object sender, EventArgs e)
+        private void btn_Click(object sender, EventArgs e)
         {
             MessageBox.Show("You have successfuly send your review.");
             this.Hide();

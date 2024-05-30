@@ -121,7 +121,7 @@ namespace TAMS.Pages
 
         private void Button_ClickedEvent(object sender, EventArgs e)
         {
-
+            new Review().Show();
         }
 
         private void label1_Click(object sender, EventArgs e)
